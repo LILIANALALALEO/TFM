@@ -1,0 +1,45 @@
+cat("=== INICIANDO VERIFICACIÓN DEL ENTORNO ===\n\n")
+
+# Lista de paquetes clave de tu pipeline
+packages <- c(
+  "DESeq2",
+  "tximport",
+  "clusterProfiler",
+  "org.At.tair.db",
+  "GenomicRanges",
+  "methylKit",
+  "ComplexHeatmap",
+  "biomaRt"
+)
+
+# Función para verificar carga
+check_package <- function(pkg){
+  cat("Checking:", pkg, "...\n")
+  if (require(pkg, character.only = TRUE)) {
+    cat("✔ OK -", pkg, "cargado correctamente\n\n")
+  } else {
+    cat("❌ ERROR -", pkg, "NO se pudo cargar\n\n")
+  }
+}
+
+# Ejecutar verificación
+for (p in packages){
+  check_package(p)
+}
+
+cat("=== VERSIONES CLAVE ===\n\n")
+
+# Versiones importantes
+cat("R version:\n")
+print(R.version.string)
+
+cat("\nmethylKit:\n")
+print(packageVersion("methylKit"))
+
+cat("\nclusterProfiler:\n")
+print(packageVersion("clusterProfiler"))
+
+cat("\nDESeq2:\n")
+print(packageVersion("DESeq2"))
+
+cat("\n=== FIN DE VERIFICACIÓN ===\n")
